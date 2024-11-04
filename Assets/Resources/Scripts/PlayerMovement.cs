@@ -1,25 +1,86 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float walkingSpeed, runningSpeed, acceleration, jumpforce, mouseSens, sphereRadius;
+    public float walkingSpeed, runningSpeed, jumpforce, sphereRadius;
     public string groundName;
 
     private Rigidbody rb;
 
+    private float x, z, mouseX;
+    private bool jumpPressed, shiftPressed;
 
+    public float currentSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Conseguir el imput del movimiento horizontal y vertical
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+
+        shiftPressed = Input.GetKey(KeyCode.LeftShift);
+
+        //Mover al jugador
+        Vector3 movement = new Vector3(x, 0f, z) * walkingSpeed * Time.deltaTime;
+        transform.Translate(movement, Space.Self);
+
+    }
+    private void FixedUpdate()
+    {
+        ApplySpeed();
+
+        ApplyJumpForce();
+    }
+
+    void ApplySpeed()
+    {
+        rb.velocity = (transform.forward * x + transform.right * z + new Vector3(0, rb.velocity.y, 0)) * currentSpeed;
+
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
+
+    void ApplyJumpForce()
+    {
+        if (jumpPressed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(transform.up * jumpforce);
+            jumpPressed = false;
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        Collider[] colliders = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), sphereRadius);
         
+        for(int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject.layer == LayerMask.NameToLayer(groundName))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), sphereRadius);
     }
 }
