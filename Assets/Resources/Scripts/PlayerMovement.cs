@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float walkingSpeed, runningSpeed, jumpforce, sphereRadius;
+    public float walkingSpeed, runningSpeed, jumpforce, sphereRadius, gravityScale;
     public string groundName;
+
+    private Vector3 movementVector;
 
     private Rigidbody rb;
 
@@ -14,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpPressed, shiftPressed;
 
     public float currentSpeed;
+
+    public float Yvelocity;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +34,22 @@ public class PlayerMovement : MonoBehaviour
 
         shiftPressed = Input.GetKey(KeyCode.LeftShift);
 
-        //Mover al jugador
-        Vector3 movement = new Vector3(x, 0f, z) * walkingSpeed * Time.deltaTime;
-        transform.Translate(movement, Space.Self);
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        {
+            jumpPressed = true;
+        }
+
+        ////Mover al jugador
+        //Vector3 movement = new Vector3(x, 0f, z) * walkingSpeed * Time.deltaTime;
+        //transform.Translate(movement, Space.Self);
+        if (IsGrounded())
+        {
+            Yvelocity = 0f;
+        }
+        else
+        {
+            Yvelocity -= gravityScale * Time.deltaTime;
+        }
 
     }
     private void FixedUpdate()
@@ -44,7 +61,17 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplySpeed()
     {
-        rb.velocity = (transform.forward * x + transform.right * z + new Vector3(0, rb.velocity.y, 0)) * currentSpeed;
+        if (shiftPressed)
+        {
+            currentSpeed = runningSpeed;
+        }
+        else
+        {
+            currentSpeed = walkingSpeed;
+        }
+        movementVector = (transform.forward * currentSpeed * z) + (transform.right * currentSpeed * x) + new Vector3(0, rb.velocity.y, 0);
+        rb.velocity = movementVector;
+
 
     }
 
@@ -55,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplyJumpForce()
     {
-        if (jumpPressed)
+        if (jumpPressed && IsGrounded())
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(transform.up * jumpforce);

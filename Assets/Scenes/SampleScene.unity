@@ -777,8 +777,10 @@ MonoBehaviour:
   runningSpeed: 40
   jumpforce: 20
   sphereRadius: 1
+  gravityScale: 9.8
   groundName: Ground
   currentSpeed: 0
+  Yvelocity: 0
 --- !u!54 &2094280707
 Rigidbody:
   m_ObjectHideFlags: 0
