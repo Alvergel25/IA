@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkingSpeed, runningSpeed, jumpforce, sphereRadius, gravityScale;
     public string groundName;
 
-    private Vector3 movementVector;
+    public Vector3 movementVector;
 
     private Rigidbody rb;
 
@@ -29,14 +29,23 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Conseguir el imput del movimiento horizontal y vertical
-        x = Input.GetAxis("Horizontal");
-        z = Input.GetAxis("Vertical");
+        x = Input.GetAxisRaw("Horizontal");
+        z = Input.GetAxisRaw("Vertical");
 
         shiftPressed = Input.GetKey(KeyCode.LeftShift);
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             jumpPressed = true;
+        }
+
+        if (shiftPressed)
+        {
+            currentSpeed = runningSpeed;
+        }
+        else
+        {
+            currentSpeed = walkingSpeed;
         }
 
         ////Mover al jugador
@@ -61,15 +70,8 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplySpeed()
     {
-        if (shiftPressed)
-        {
-            currentSpeed = runningSpeed;
-        }
-        else
-        {
-            currentSpeed = walkingSpeed;
-        }
-        movementVector = (transform.forward * currentSpeed * z) + (transform.right * currentSpeed * x) + new Vector3(0, rb.velocity.y, 0);
+       
+        movementVector = (transform.forward * currentSpeed * z) + (transform.right * currentSpeed * x) + new Vector3(0, rb.velocity.y + Yvelocity, 0);
         rb.velocity = movementVector;
 
 
@@ -82,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplyJumpForce()
     {
-        if (jumpPressed && IsGrounded())
+        if (jumpPressed)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(transform.up * jumpforce);
