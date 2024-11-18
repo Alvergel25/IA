@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e18c17a4b526d86469f342c65254241d, type: 3}
-  m_Name: HearAction (A)
+  m_Script: {fileID: 11500000, guid: d7fb7ee40cbd4164695495c4acf2b117, type: 3}
+  m_Name: IsPlayerNearbyAction
   m_EditorClassIdentifier: 
   value: 0
-  radius: 20
+  detectionRadius: 10

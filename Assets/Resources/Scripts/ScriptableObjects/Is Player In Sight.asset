@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e18c17a4b526d86469f342c65254241d, type: 3}
-  m_Name: Hear2
+  m_Script: {fileID: 11500000, guid: 83d569dc1c8374942bc11ba0f4c231b7, type: 3}
+  m_Name: Is Player In Sight
   m_EditorClassIdentifier: 
   value: 0
-  radius: 12
+  sightRange: 5

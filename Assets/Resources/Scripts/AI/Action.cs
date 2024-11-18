@@ -4,9 +4,14 @@ using UnityEngine;
 
 public abstract class Action : ScriptableObject
 {
-    public bool value; //Si la ccion tiene o no que cumplirse
+    public bool value; // Determina si la condición debe cumplirse (true) o no cumplirse (false) para la transición
 
-    public abstract bool Check(GameObject owner); //En el check lo que va ha hacer es ejecutar el comportamiento de la accion
+    // Método abstracto que verifica si la condición se cumple
+    public abstract bool Check(GameObject owner);
 
-    public abstract void DrawGizmos(GameObject owner);
+    // Método abstracto para dibujar los Gizmos en la escena
+    public virtual void DrawGizmos(GameObject owner)
+    {
+        // Este método puede ser sobreescrito en las clases derivadas para dibujar visualizaciones específicas
+    }
 }

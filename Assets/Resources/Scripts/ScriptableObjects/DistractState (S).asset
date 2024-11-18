@@ -9,19 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c65ece46a5307444d953e6c96662f61d, type: 3}
-  m_Name: GuardState (S)
+  m_Script: {fileID: 11500000, guid: ecb633f988b50b14d9b855531ee36e60, type: 3}
+  m_Name: DistractState (S)
   m_EditorClassIdentifier: 
   stateParameters:
   - actionParameters:
-    - action: {fileID: 11400000, guid: 141e3c9022942ba488650ef53fd0d4c5, type: 2}
+    - action: {fileID: 11400000, guid: 83437465c01db34428ea69d1eb33a099, type: 2}
       actionValue: 1
     nextStates: {fileID: 11400000, guid: eaf36922358569a41ba64bf47d34ef47, type: 2}
     and: 0
   - actionParameters:
-    - action: {fileID: 11400000, guid: 94c8a36ab38dccc48bc54c42cede8cea, type: 2}
-      actionValue: 1
-    nextStates: {fileID: 11400000}
+    - action: {fileID: 11400000, guid: bf0e1a289e2aba145892140bec964091, type: 2}
+      actionValue: 0
+    nextStates: {fileID: 11400000, guid: 8d282a67479fdc449ad0d2a709bea50b, type: 2}
     and: 0
-  guardPoint: {x: 0, y: 0, z: 0}
-  blendParameter: Speed
+  distractionDuration: 3
