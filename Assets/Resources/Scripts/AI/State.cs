@@ -69,7 +69,7 @@ public abstract class State : ScriptableObject
         {
             foreach (ActionParameters aP in parameter.actionParameters)
             {
-                //aP.action.DrawGizmos(owner);
+                aP.action.DrawGizmos(owner);
             }
         }
     }
