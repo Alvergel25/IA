@@ -18,4 +18,6 @@ MonoBehaviour:
       actionValue: 1
     nextStates: {fileID: 11400000, guid: eaf36922358569a41ba64bf47d34ef47, type: 2}
     and: 0
-  patrolPoints: []
+  patrolPoints:
+  - {x: 116.64935, y: 31.555748, z: 327.67557}
+  - {x: 137.83, y: 31.555748, z: 327.67557}

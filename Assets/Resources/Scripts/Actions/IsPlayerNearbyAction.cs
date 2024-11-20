@@ -7,6 +7,7 @@ public class IsPlayerNearbyAction : Action
 
     public override bool Check(GameObject owner)
     {
+       
         TargetReference targetReference = owner.GetComponent<TargetReference>();
 
         if (targetReference != null && targetReference.target != null)

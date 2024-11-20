@@ -4,11 +4,12 @@ using UnityEngine.AI;
 [CreateAssetMenu(fileName = "PatrolState (S)", menuName = "ScriptableObjects/States/PatrolState")]
 public class PatrolState : State
 {
-    public Transform[] patrolPoints; // Array de puntos de patrullaje
+    public Vector3[] patrolPoints; // Array de puntos de patrullaje
     private int currentPatrolIndex;
 
     protected override void PerformAction(StateMachine owner)
     {
+
         NavMeshAgent navMeshAgent = owner.GetComponent<NavMeshAgent>();
         Animator animator = owner.GetComponent<Animator>();
 
@@ -18,10 +19,10 @@ public class PatrolState : State
         if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
         {
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-            navMeshAgent.SetDestination(patrolPoints[currentPatrolIndex].position);
+            navMeshAgent.SetDestination(patrolPoints[currentPatrolIndex]);
         }
 
-        // Control de animación
+        // Control de animaciï¿½n
         animator.SetFloat("Speed", navMeshAgent.velocity.magnitude / navMeshAgent.speed);
     }
 }

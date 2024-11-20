@@ -14,13 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateParameters:
   - actionParameters:
-    - action: {fileID: 11400000, guid: 3cbfa822ac59882409b148790d290ed9, type: 2}
-      actionValue: 1
-    nextStates: {fileID: 11400000, guid: bc9d89517c0a8384b8b0bdbceebde67e, type: 2}
-    and: 0
-  - actionParameters:
-    - action: {fileID: 11400000, guid: 7ad738f2fcfb62d4c912d9fa2be5f1ef, type: 2}
-      actionValue: 1
-    nextStates: {fileID: 11400000, guid: 448b21f150ef3194f85be06fde46fcd8, type: 2}
+    - action: {fileID: 11400000, guid: 17d8e334b2626714fbd1b85eae6554b6, type: 2}
+      actionValue: 0
+    nextStates: {fileID: 11400000, guid: 8d282a67479fdc449ad0d2a709bea50b, type: 2}
     and: 0
   blendParameter: 
