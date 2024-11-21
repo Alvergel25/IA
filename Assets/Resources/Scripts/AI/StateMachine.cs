@@ -21,7 +21,7 @@ public class StateMachine : MonoBehaviour
         currentState = initialState;
         if (currentState != null)
         {
-            currentState.OnEnter(this);
+            currentState.OnEnter(gameObject);
         }
     }
 
@@ -44,14 +44,14 @@ public class StateMachine : MonoBehaviour
         if (currentState != null)
         {
             // Ejecuta la lógica del estado actual y verifica si se requiere una transición
-            State nextState = currentState.Run(this);
+            State nextState = currentState.Run(gameObject);
 
             // Si el estado actual devuelve un nuevo estado, se realiza la transición
             if (nextState != null && nextState != currentState)
             {
-                currentState.OnExit(this);  // Salir del estado actual
+                currentState.OnExit(gameObject);  // Salir del estado actual
                 currentState = nextState;   // Cambiar al nuevo estado
-                currentState.OnEnter(this); // Entrar en el nuevo estado
+                currentState.OnEnter(gameObject); // Entrar en el nuevo estado
             }
         }
     }

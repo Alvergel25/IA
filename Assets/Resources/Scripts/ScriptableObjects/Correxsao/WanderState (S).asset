@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f1dd56f996cf4438295067d00417a3, type: 3}
+  m_Name: WanderState (S)
+  m_EditorClassIdentifier: 
+  stateParameters:
+  - actionParameters:
+    - action: {fileID: 11400000, guid: 613bed2acdd188b438d0263b8bf2f68b, type: 2}
+      actionValue: 1
+    nextStates: {fileID: 11400000, guid: 958007fe8e4f8f94b871956af68328c0, type: 2}
+    and: 0
+  maxTime: 5
+  radius: 20

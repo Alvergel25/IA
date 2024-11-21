@@ -7,7 +7,7 @@ public class PatrolState : State
     public Vector3[] patrolPoints; // Array de puntos de patrullaje
     private int currentPatrolIndex;
 
-    protected override void PerformAction(StateMachine owner)
+    protected override void PerformAction(GameObject owner)
     {
 
         NavMeshAgent navMeshAgent = owner.GetComponent<NavMeshAgent>();

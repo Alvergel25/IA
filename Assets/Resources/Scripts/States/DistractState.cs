@@ -7,7 +7,7 @@ public class DistractState : State
     public float distractionDuration = 3f; // Duración de la distracción en segundos
     private float distractionStartTime;
 
-    protected override void PerformAction(StateMachine owner)
+    protected override void PerformAction(GameObject owner)
     {
         Animator animator = owner.GetComponent<Animator>();
         NavMeshAgent navMeshAgent = owner.GetComponent<NavMeshAgent>();
@@ -26,7 +26,7 @@ public class DistractState : State
         }
     }
 
-    public override State Run(StateMachine owner)
+    public override State Run(GameObject owner)
     {
         // Reinicia el tiempo de distracción cuando entra en este estado
         distractionStartTime = Time.time;

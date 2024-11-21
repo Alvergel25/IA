@@ -6,7 +6,7 @@ public class AttackState : State
     public float attackCooldown = 2f; // Tiempo entre ataques
     private float lastAttackTime;
 
-    protected override void PerformAction(StateMachine owner)
+    protected override void PerformAction(GameObject owner)
     {
         Animator animator = owner.GetComponent<Animator>();
         TargetReference targetReference = owner.GetComponent<TargetReference>();

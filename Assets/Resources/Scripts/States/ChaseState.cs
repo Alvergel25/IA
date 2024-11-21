@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class ChaseState : State
     public string blendParameter; // Nombre del parámetro de animación para el blend de velocidad
 
     // Método que ejecuta la lógica específica del estado de persecución
-    protected override void PerformAction(StateMachine owner)
+    protected override void PerformAction(GameObject owner)
     {
         NavMeshAgent navMeshAgent = owner.GetComponent<NavMeshAgent>();
         Animator animator = owner.GetComponent<Animator>();
@@ -27,4 +28,18 @@ public class ChaseState : State
             animator.SetFloat(blendParameter, navMeshAgent.velocity.magnitude / navMeshAgent.speed);
         }
     }
+
+    public override State Run(GameObject owner) //StateMachine diego lo tiene como GameObject
+    {
+        State nState = CheckActions(owner);
+
+        NavMeshAgent navMeshAgent = owner.GetComponent< NavMeshAgent>();
+        TargetReference targetCmp = owner.GetComponent<TargetReference>();
+
+        navMeshAgent.SetDestination(targetCmp.target.transform.position);
+
+        return nState;
+    }
+
+  
 }

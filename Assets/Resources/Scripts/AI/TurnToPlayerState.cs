@@ -5,7 +5,7 @@ public class TurnToPlayerState : State
 {
     public float turnSpeed = 3f; // Velocidad de giro hacia el jugador
 
-    protected override void PerformAction(StateMachine owner)
+    protected override void PerformAction(GameObject owner)
     {
         TargetReference targetReference = owner.GetComponent<TargetReference>();
 

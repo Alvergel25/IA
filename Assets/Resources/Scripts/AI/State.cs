@@ -28,21 +28,21 @@ public abstract class State : ScriptableObject
     public StateParameters[] stateParameters; // Condiciones de transición y siguientes estados posibles
 
     // Método llamado al entrar en el estado
-    public virtual void OnEnter(StateMachine owner)
+    public virtual void OnEnter(GameObject owner)
     {
         // Lógica que se debe ejecutar cuando se entra en el estado
         Debug.Log("Entering state: " + this.GetType().Name);
     }
 
     // Método llamado al salir del estado
-    public virtual void OnExit(StateMachine owner)
+    public virtual void OnExit(GameObject owner)
     {
         // Lógica que se debe ejecutar cuando se sale del estado
         Debug.Log("Exiting state: " + this.GetType().Name);
     }
 
     // Verifica si se cumplen las condiciones para cambiar de estado
-    protected State CheckActions(StateMachine owner)
+    protected State CheckActions(GameObject owner)
     {
         // Recorre cada conjunto de condiciones en `stateParameters`
         for (int i = 0; i < stateParameters.Length; i++)
@@ -84,14 +84,14 @@ public abstract class State : ScriptableObject
     }
 
     // Ejecuta la acción específica del estado y verifica si debe hacer una transición
-    public virtual State Run(StateMachine owner)
+    public virtual State Run(GameObject owner)
     {
         PerformAction(owner); // Ejecuta la lógica principal del estado
         return CheckActions(owner); // Verifica condiciones de transición y retorna el siguiente estado si corresponde
     }
 
     // Método abstracto para definir la acción específica de cada estado en clases derivadas
-    protected abstract void PerformAction(StateMachine owner);
+    protected abstract void PerformAction(GameObject owner);
 
     // Dibuja Gizmos de depuración para cada acción en el estado
     public void DrawAllActionsGizmos(GameObject owner)
